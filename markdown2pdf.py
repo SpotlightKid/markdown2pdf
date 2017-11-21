@@ -2,8 +2,8 @@
 #-*- coding:utf-8 -*-
 """Convert Markdown markup text to a PDF file.
 
-Converts Markdown text to HTML first with python-markdown2 and then converts
-its HTML output to PDF with xhtml2pdf.
+Converts Markdown text to HTML with Python, using markdown2_ to convert the
+Markdown source to HTML first and the output then to PDF with xhtml2pdf_.
 
 """
 

@@ -18,8 +18,8 @@ from markdown2 import markdown
 from xhtml2pdf import pisa
 from xhtml2pdf.default import DEFAULT_CSS
 
-__author__  = 'Christopher Arndt'
-__version__ = '1.0'
+__author__ = 'Christopher Arndt'
+__version__ = '0.1.0'
 
 DEFAULT_CSS += """\
 html {
@@ -47,11 +47,13 @@ DEFAULT_EXTRAS = [
     'wiki-tables'
 ]
 
+
 def html2pdf(html, filename, css=DEFAULT_CSS):
     with open(filename, "wb") as fp:
         # convert HTML to PDF
         status = pisa.CreatePDF(html, dest=fp, default_css=css)
         return status.err
+
 
 def markdown2pdf(text, filename, css=DEFAULT_CSS, extras=DEFAULT_EXTRAS, **kw):
     return html2pdf(markdown(text, extras=extras, **kw), filename, css)
@@ -65,4 +67,3 @@ if __name__ == '__main__':
 
     with open(sys.argv[1]) as fp:
         markdown2pdf(fp.read(), sys.argv[2])
-

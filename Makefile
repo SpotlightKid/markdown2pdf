@@ -1,5 +1,5 @@
 BROWSER ?= xdg-open
-PYTHON_PACKAGE = markdown2pdf.yp
+PYTHON_PACKAGE = markdown2pdf.py
 TESTS_PACKAGE = tests
 
 .PHONY: clean clean-test clean-pyc clean-build docs help

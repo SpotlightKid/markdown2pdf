@@ -1,0 +1,10 @@
+-r base.txt
+
+coverage
+flake8
+pycodestyle
+pydocstyle
+pylint
+pytest
+radon
+wheel>=0.23.0

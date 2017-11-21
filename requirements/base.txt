@@ -1,2 +1,2 @@
-markdown2==2.3.6
+markdown2==2.3.5
 xhtml2pdf==0.2b1

@@ -7,16 +7,21 @@ its HTML output to PDF with xhtml2pdf.
 
 """
 
-__all__ = [
+__all__ = (
     'DEFAULT_CSS',
     'DEFAULT_EXTRAS',
     'html2pdf',
     'markdown2pdf'
-]
+)
+
+import logging
+import os
+import sys
 
 from markdown2 import markdown
 from xhtml2pdf import pisa
 from xhtml2pdf.default import DEFAULT_CSS
+
 
 __author__ = 'Christopher Arndt'
 __version__ = '0.1.0'
@@ -59,11 +64,25 @@ def markdown2pdf(text, filename, css=DEFAULT_CSS, extras=DEFAULT_EXTRAS, **kw):
     return html2pdf(markdown(text, extras=extras, **kw), filename, css)
 
 
+def main(args=None):
+    logging.basicConfig(level=logging.WARNING)
+
+    if args is None:
+        args = sys.argv[1:]
+
+    if args:
+        infile = args.pop(0)
+    else:
+        return "Usage: markdown2pdf infile.md [outfile.pdf]"
+
+    if args:
+        outfile = args.pop()
+    else:
+        outfile = os.path.splitext(infile)[0] + '.pdf'
+
+    with open(infile) as fp:
+        markdown2pdf(fp.read(), outfile)
+
+
 if __name__ == '__main__':
-    import logging
-    import sys
-
-    logging.basicConfig(level=logging.ERROR)
-
-    with open(sys.argv[1]) as fp:
-        markdown2pdf(fp.read(), sys.argv[2])
+    sys.exit(main(sys.argv[1:]) or 0)
